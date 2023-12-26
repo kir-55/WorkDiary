@@ -9,9 +9,9 @@ require 'menu.html';
             <div class="center">
                 <p id="hint">Sign in to have access to create and view notes!</p>
                 <div id ="buttons">
-                    <button id = "create_note" onclick="location.href='createNote.php'" type="button">Create note</button>
-                    <button id = "search_note" onclick="location.href='searchNote.php'" type="button">Search for note</button>
-                    <button id = "go_schedule" onclick="location.href='shedule.php'" type="button">Go to shedule</button>
+                    <button id = "create_note" class = "closed_access" onclick="location.href='createNote.php'" type="button">Create note</button>
+                    <button id = "search_note" class = "closed_access" onclick="location.href='searchNote.php'" type="button">Search for note</button>
+                    <button id = "go_schedule" class = "closed_access" onclick="location.href='shedule.php'" type="button">Go to shedule</button>
                 </div>
                 <?php
                     
@@ -60,9 +60,12 @@ require 'menu.html';
                             echo "<label>You are successfully logged in as ", $row['Username'], "</label>";
                             echo "<script>
                             document.getElementById('username').textContent = '",$row['Username'],"';
-                            document.getElementById('create_note').style.display = 'block'; 
-                            document.getElementById('search_note').style.display = 'block'; 
-                            document.getElementById('go_schedule').style.display = 'block';
+                            var closed_access_elements = document.getElementsByClassName('closed_access');
+
+                            for(var i=0; i< closed_access_elements.length; i++){
+                                closed_access_elements[i].style.display = 'block';
+                            }
+
                             document.getElementById('hint').style.display = 'none'; 
                             </script>";
                             $_SESSION['username'] = $row['Username'];
@@ -75,10 +78,13 @@ require 'menu.html';
                                     <label>try to:</label><br><a href="signUp.html">sign up</a><br><br>';
                             echo "<script>
                             document.getElementById('username').textContent = 'Not logged in';
+                            
+                            var closed_access_elements = document.getElementsByClassName('closed_access');
+
+                            for(var i=0; i< closed_access_elements.length; i++){
+                                closed_access_elements[i].style.display = 'none';
+                            }
                             document.getElementById('hint').style.display = 'none'; 
-                            document.getElementById('create_note').style.display = 'none';
-                            document.getElementById('search_note').style.display = 'none'; 
-                            document.getElementById('go_schedule').style.display = 'none';
                             </script>";
                         }   
                     }
@@ -106,7 +112,7 @@ require 'menu.html';
                                 $curr_content = $row["Content"];
 
                                 echo "
-                                <div class = \"note\">
+                                <div class = \"note\" style=\"margin: 20px;\">
                                     <label>Author: $curr_username</label><br>
                                     <label>DateTime: $curr_datetime</label><br>
                                     <label>Title: $curr_title</label><br>

@@ -17,7 +17,7 @@ h2{
     font-size: 25px;
 }
 
-#create_note, #search_note{
+.closed_access{
     display: none;
     margin-bottom: 20px;
 }

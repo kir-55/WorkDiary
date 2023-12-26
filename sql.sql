@@ -21,5 +21,15 @@ CREATE TABLE IF NOT EXISTS Notes (
     Tags varchar(255),
     Peaple varchar(1023),
     Content varchar(8000),
-    PRIMARY KEY (Id)
+    PRIMARY KEY (Id) 
+);
+
+CREATE TABLE IF NOT EXISTS Events(
+    Id int NOT NULL AUTO_INCREMENT,
+    Author varchar(255) NOT NULL,
+    DateTime_ DATETIME NOT NULL,
+    Date_ DATE NOT NULL,
+    Title varchar(255) NOT NULL,
+    Content varchar(8000),
+    PRIMARY KEY (Id) 
 );

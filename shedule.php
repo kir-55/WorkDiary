@@ -9,12 +9,7 @@
 
     if(isset($_SESSION["login"]) && isset($_SESSION["password"])){
         if(isset($_GET['day'])){
-            echo ('
-            <form>
-                <input type="text" placeholder="Enter event...">
-                <input type="submit">
-            </form>
-            ');
+           require 'addEvent.html';
         }
         else{
             require 'calendar.html';

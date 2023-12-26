@@ -45,32 +45,5 @@
             }
         }
     }
+    require "addNote.html";
 ?>
-<!DOCTYPE html>
-    <body>
-        <form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']);?>">
-            <fieldset>
-                <legend>Note</legend>
-                <label for="username">Author:</label><br>
-                <input type="text" id="username" name="username" value="<?php echo $_SESSION['username']; ?>" readonly><br>
-
-                <label for="datetime">Date/Time:</label><br>
-                <input type="text" id="datetime" name="datetime" value="<?php echo date('Y-m-d H:i:s'); ?>" readonly><br>
-
-                <label for="title">Title:</label><br>
-                <input type="text" id="title" name="title" value="Note#<?php echo date('m-d'); ?>" placeholder="Enter Title..." require><br>
-
-                <label for="tags">Tags and related words:</label><br>
-                <input type="text" id="tags" name="tags" require><br>
-
-                <label for="people">Related people:</label><br>
-                <input type="text" id="people" name="people" require><br>
-
-                <label for="content">Content:</label><br>
-                <textarea id="content" name="content" rows="8" cols="125"></textarea><br><br>
-
-                <input type="submit" value="Submit" class="button">
-            </fieldset>
-        </form>
-    </body>
-</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+    <body>
+        <form method="post" action="shedule.php">
+            <fieldset>
+                <legend>New event</legend>
+                <label for="username">Author:</label><br>
+                <input type="text" id="username" name="username" value="<?php echo $_SESSION['username']; ?>" readonly><br>
+
+                <label for="datetime">Date/Time:</label><br>
+                <input type="text" id="datetime" name="datetime" value="<?php echo date('Y-m-d H:i:s'); ?>" readonly><br>
+                
+                <label for="datetime">Date:</label><br>
+                <input type="text" id="datetime" name="text" value="<?php echo $_GET['day']; ?>" readonly><br>
+
+                <label for="title">Event title:</label><br>
+                <input type="text" id="title" name="title" value="Event#<?php echo date('m-d'); ?>" placeholder="Enter Title..." require><br>
+                
+                <label for="content">Content:</label><br>
+                <textarea id="content" name="content" rows="8" cols="125"></textarea><br><br>
+
+                <input type="submit" value="Submit" class="button">
+            </fieldset>
+        </form>
+    </body>
+</html>
