@@ -1,4 +1,10 @@
-CREATE TABLE Users (
+CREATE DATABASE IF NOT EXISTS users_data;
+
+-- Use the users_data database
+USE users_data;
+
+-- Create the Users table
+CREATE TABLE IF NOT EXISTS Users (
     Id int NOT NULL AUTO_INCREMENT,
     Username varchar(255) NOT NULL,
     Login varchar(255) NOT NULL,
@@ -6,7 +12,8 @@ CREATE TABLE Users (
     PRIMARY KEY (Id)
 );
 
-CREATE TABLE Notes (
+-- Create the Notes table
+CREATE TABLE IF NOT EXISTS Notes (
     Id int NOT NULL AUTO_INCREMENT,
     Author varchar(255) NOT NULL,
     DataTime DATETIME NOT NULL,

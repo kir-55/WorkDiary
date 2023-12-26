@@ -1,31 +1,20 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <title>WorkDiary</title>
-    </head>
-    <body>
-        <header>
-            <div class="menu">
-                <a href="index.php"><h1>WorkDiary</h1></a>
-                <ul class="menu">
-                    <li id = "username">Not logged in</li>
-                    <li><a href="signIn.html">Sign in</a></li>
-                    <li><a href="signUp.html">Sign up</a></li>
-                </ul>
-            </div>
-        </header>
+<?php
+session_start();
+require 'menu.html';
+?>
 
+<!DOCTYPE html>
+    <body>
         <main>
             <div class="center">
                 <p id="hint">Sign in to have access to create and view notes!</p>
                 <div id ="buttons">
                     <button id = "create_note" onclick="location.href='createNote.php'" type="button">Create note</button>
                     <button id = "search_note" onclick="location.href='searchNote.php'" type="button">Search for note</button>
+                    <button id = "go_schedule" onclick="location.href='shedule.php'" type="button">Go to shedule</button>
                 </div>
                 <?php
-                    session_start();
+                    
                     if(isset($_POST) && isset($_POST["login"]) && isset($_POST["password"])){
                         $login= $_POST['login'];
                         $_SESSION["login"] = $login;
@@ -45,9 +34,20 @@
                         $db_title = "users_data";
                         $db_servername = "localhost";
                         $db_username = "root";
-                        $db_password = "root";
+                        $db_password = "password";
+                        $conn = new mysqli($db_servername, $db_username, $db_password);
+                        
+                        $sqlFile = 'sql.sql';
+                        $sql = file_get_contents($sqlFile);
 
-                        $conn = new mysqli($db_servername, $db_username, $db_password, $db_title);
+                        // Execute the SQL statements
+                        if ($conn->multi_query($sql)) {
+                            $conn = new mysqli($db_servername, $db_username, $db_password, $db_title);
+                        } else {
+                            die("Error creating database and tables: "  . $conn->connect_error);
+                        }
+
+                        
                         if ($conn->connect_error) {
                             die("<p>Connection failed: " . $conn->connect_error . "</p>");
                         }
@@ -62,6 +62,7 @@
                             document.getElementById('username').textContent = '",$row['Username'],"';
                             document.getElementById('create_note').style.display = 'block'; 
                             document.getElementById('search_note').style.display = 'block'; 
+                            document.getElementById('go_schedule').style.display = 'block';
                             document.getElementById('hint').style.display = 'none'; 
                             </script>";
                             $_SESSION['username'] = $row['Username'];
@@ -77,6 +78,7 @@
                             document.getElementById('hint').style.display = 'none'; 
                             document.getElementById('create_note').style.display = 'none';
                             document.getElementById('search_note').style.display = 'none'; 
+                            document.getElementById('go_schedule').style.display = 'none';
                             </script>";
                         }   
                     }
@@ -89,7 +91,8 @@
                         $db_title = "users_data";
                         $db_servername = "localhost";
                         $db_username = "root";
-                        $db_password = "root";
+                        $db_password = "password";
+
 
                         $sql = "SELECT * FROM Notes ORDER BY  Id DESC;";
                         if ($result = mysqli_query($conn, $sql)) {

@@ -1,0 +1,12 @@
+<!Doctype html lang="en">
+    <body>
+        <script>
+            document.write('<div class="calendar">');
+            document.write('<div class="week-day">Mon</div><div class="week-day">Tue</div><div class="week-day">Wed</div><div class="week-day">Thu</div><div class="week-day">Fri</div><div class="week-day">Sat</div><div class="week-day">Sun</div>');
+            for(var i = 0; i < 365; i++){
+                document.write('<div class = "day" id = "day' + i + '"  onclick="window.location=\'shedule.php?day='+ i +'\';">' + (i+1) + '</div>');
+            }
+            document.write('</div>');
+        </script>
+    </body>
+</html>     

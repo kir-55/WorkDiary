@@ -1,22 +1,9 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <title>WorkDiary</title>
-    </head>
+<?php
+    require 'menu.html';
+    session_start();
+?>
+<!DOCTYPE html>
     <body>
-        <header>
-            <div class="menu">
-                <a href="index.php"><h1>WorkDiary</h1></a>
-                <ul class="menu">
-                    <li id = "username">Not logged in</li>
-                    <li><a href="signIn.html">Sign in</a></li>
-                    <li><a href="signUp.html">Sign up</a></li>
-                </ul>
-            </div>
-        </header>
-
         <main>
             <div class="center">
                 <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
@@ -33,8 +20,6 @@
                 </form>
                 
                 <?php
-
-                    session_start();
                     echo "<script>
                         document.getElementById('username').textContent = '",$_SESSION['username'],
                     "';</script>";
@@ -45,7 +30,7 @@
                         $db_title = "users_data";
                         $db_servername = "localhost";
                         $db_username = "root";
-                        $db_password = "root";
+                        $db_password = "password";
                         
                         $search_options = $_POST['search_options'];
                         $search_prompt = $_POST['search_prompt'];
